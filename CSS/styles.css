@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", serif;
+}
+
+.contenedor-principal {
+    display: flex; 
+    flex-direction: column; 
+    max-width: 1200px; 
+    width: 90%; 
+    height: 100vh; 
+    margin: 0 auto; 
+    background-color: #f4f4f4; 
+    position: relative;
+}
+
+.contenido {
+    flex-grow: 1; 
+    padding: 20px;
+    background-color: lightslategrey;
+    margin-right: 20px; 
+    overflow-y: auto; 
+}
+
+.aside {
+    width: 200px; 
+    background-color: aqua;
+    padding: 20px;
+    position: absolute; 
+    top: 0; 
+    bottom: 0; 
+    right: 0; 
+    border-left: 1px solid #ccc;
+}
+
+.aside h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.aside ul {
+    list-style: none;
+}
+
+.aside ul li {
+    margin-bottom: 10px;
+}
+
+.aside ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+}
+
+.aside ul li a:hover {
+    color: #007BFF;
+}
+
+.instrucciones {
+    display: flex; 
+    justify-content: space-between; 
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - 200px);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.instrucciones-box {
+    background-color: #444;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    flex: 1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.instrucciones-box h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.instrucciones-box p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
