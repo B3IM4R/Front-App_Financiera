@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+.contenedor-principal {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    background-color: yellow;
+}
+
+main {
+    flex: 1;
+    min-width: calc(74%);
+    background-color: pink;
+    padding: 20px;
+}
+
+aside {
+    height: 100vh;
+    flex: 1;
+    min-width: calc(26%);
+    position: sticky;
+    top: 0;
+    background-color: lightseagreen;
+}
+
+.instrucciones {
+    max-width: 74%;
+    position: sticky;
+    bottom: 0;
+    background-color: mediumblue;
+}
