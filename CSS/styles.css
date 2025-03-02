@@ -38,3 +38,27 @@ footer {
     bottom: 0;
     background-color: mediumblue;
 }
+
+.instrucciones {
+    display: flex;
+    justify-content: space-between;
+    background-color: #333;
+}
+
+.instrucciones-box {
+    background-color: #fff;
+    color: #333;
+    padding: 15px 30px;
+    flex: 1;
+    border-left: 1px solid #707070;
+    border-top: 1px solid #707070;
+}
+
+.instrucciones-box h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.instrucciones-box p {
+    font-size: 0.9rem;
+}
