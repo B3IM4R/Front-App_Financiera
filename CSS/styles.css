@@ -18,7 +18,7 @@
 
 main {
     flex: 1;
-    min-width: calc(74%);
+    min-width: 74%;
     background-color: pink;
     padding: 20px;
 }
@@ -26,13 +26,13 @@ main {
 aside {
     height: 100vh;
     flex: 1;
-    min-width: calc(26%);
+    min-width: 26%;
     position: sticky;
     top: 0;
     background-color: lightseagreen;
 }
 
-.instrucciones {
+footer {
     max-width: 74%;
     position: sticky;
     bottom: 0;
