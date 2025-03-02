@@ -19,17 +19,81 @@
 main {
     flex: 1;
     min-width: 74%;
-    background-color: pink;
     padding: 20px;
+    border-left: 1px solid #707070;
+    background-color: pink;
 }
 
 aside {
-    height: 100vh;
-    flex: 1;
-    min-width: 26%;
     position: sticky;
     top: 0;
-    background-color: lightseagreen;
+    flex: 1;
+    height: 100vh;
+    min-width: 26%;
+    padding: 20px 35px;
+    border-left: 1px solid #707070;
+    border-right: 1px solid #707070;
+    background-color: #f4f4f4;
+}
+
+aside h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.subtitulo {
+    font-weight: 500;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.lista-opciones {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 15px;
+}
+
+.opcion {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.icono {
+    font-size: 20px;
+    font-style: normal;
+}
+
+.texto {
+    color: #333;
+    position: relative;
+    text-decoration: none;
+}
+
+.texto::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background-color: #007BFF;
+    transition: width 0.3s ease;
+}
+
+.opcion:hover .texto::after {
+    transform: none;
+    width: 100%;
+}
+
+.opcion:hover .texto {
+    transform: none;
+    color: #007BFF;
 }
 
 footer {
