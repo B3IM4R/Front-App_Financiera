@@ -10,12 +10,9 @@
 <body>
     <div class="contenedor-principal">
         <main class="contenido">
-            <section>Salario</section>
-            <section>Gráficos</section>
-            <section>Recomendación</section>
-            <img src="https://media.istockphoto.com/id/636379014/es/foto/manos-la-formaci%C3%B3n-de-una-forma-de-coraz%C3%B3n-con-silueta-al-atardecer.jpg?s=612x612&w=0&k=20&c=R2BE-RgICBnTUjmxB8K9U0wTkNoCKZRi-Jjge8o_OgE=" alt="Corazon">
-            <img src="https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/9db5/live/48fd9010-c1c1-11ee-9519-97453607d43e.jpg.webp" alt="arbol">
-            <img src="https://www.educaciontrespuntocero.com/wp-content/uploads/2020/04/mejores-bancos-de-imagenes-gratis.jpg" alt="hoja">	
+            <section class="page" id="gastos">Salario</section>
+            <section class="page" id="patrones">Gráficos</section>
+            <section class="page" id="recomendacion">Recomendación</section>
         </main>
         <aside id="menu-lateral">
             <h2>Gestiona tu Salario</h2>
@@ -23,9 +20,9 @@
             <p class="subtitulo">¿Qué puedes hacer aquí?</p>
             <p>Descubre las funciones que nuestra aplicación tiene para ti:</p>
             <ul class="lista-opciones">
-                <li class="opcion"><i class="icono">📋</i><a class="texto" href="">Registra tus gastos</a></li>
-                <li class="opcion"><i class="icono">📊</i><a class="texto" href="">Analiza tus patrones</a></li>
-                <li class="opcion"><i class="icono">💡</i><a class="texto" href="">Recibe recomendaciones</a></li>
+                <li class="opcion"><i class="icono">📋</i><a class="texto active" href="#gastos">Registra tus gastos</a></li>
+                <li class="opcion"><i class="icono">📊</i><a class="texto" href="#patrones">Analiza tus patrones</a></li>
+                <li class="opcion"><i class="icono">💡</i><a class="texto" href="#recomendacion">Recibe recomendaciones</a></li>
                 <li class="opcion"><i class="icono">🎓</i><a class="texto" href="">Aprende sobre finanzas</a></li>
                 <div class="footer-link">
                     <li class="opcion"><i class="icono">📖</i><a class="texto" href="" id="open-modal">Ver instrucciones</a></li>
@@ -33,6 +30,12 @@
             </ul>
         </aside>
         <footer><div class="instrucciones" id="footer-instrucciones"></div></footer>
+    </div>
+    <div class="menu"><button id="menu-toggle" class="menu-hamburguesa">☰</button></div>
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <div id="modal-instrucciones"></div></div>
     </div>
     <script src="./JS/script.js"></script>
 </body>

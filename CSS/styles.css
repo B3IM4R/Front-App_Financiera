@@ -13,15 +13,17 @@
     height: 100%;
     margin: 0 auto;
     position: relative;
-    background-color: yellow;
 }
 
 main {
     flex: 1;
     min-width: 74%;
-    padding: 20px;
     border-left: 1px solid #707070;
     background-color: pink;
+}
+
+.page {
+    background-color: red;
 }
 
 aside {
@@ -30,10 +32,11 @@ aside {
     flex: 1;
     height: 100vh;
     min-width: 26%;
-    padding: 20px 35px;
+    padding: 20px 25px;
     border-left: 1px solid #707070;
     border-right: 1px solid #707070;
     background-color: #f4f4f4;
+    display: none;
 }
 
 aside h2 {
@@ -75,7 +78,7 @@ aside h2 {
     text-decoration: none;
 }
 
-.texto::after {
+.texto::after, a.active::after {
     content: '';
     position: absolute;
     left: 0;
@@ -86,21 +89,50 @@ aside h2 {
     transition: width 0.3s ease;
 }
 
+a.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%; 
+    height: 2px; 
+    background-color: #007BFF; 
+    transition: none;
+}
+
 .opcion:hover .texto::after {
     transform: none;
     width: 100%;
 }
 
-.opcion:hover .texto {
+a.active {
     transform: none;
     color: #007BFF;
+}
+
+.menu {
+    position: sticky;
+    bottom: 0;
+    text-align: end;
+    background-color: #1B6BB0;
+    z-index: 1000;    
+}
+
+.menu-hamburguesa {
+    margin: 5px 20px;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 0 5px;
+    border: none;
+    color: #333;
+    background-color: transparent;
 }
 
 footer {
     max-width: 74%;
     position: sticky;
     bottom: 0;
-    background-color: mediumblue;
+    display: none;    
 }
 
 .instrucciones {
@@ -112,7 +144,7 @@ footer {
 .instrucciones-box {
     background-color: #fff;
     color: #333;
-    padding: 15px 30px;
+    padding: 10px 20px;
     flex: 1;
     border-left: 1px solid #707070;
     border-top: 1px solid #707070;
@@ -125,4 +157,122 @@ footer {
 
 .instrucciones-box p {
     font-size: 0.9rem;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1001;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+.modal-content .instrucciones-box {
+    border: none;
+    border-bottom: 1px solid #707070;
+}
+
+.modal-content .instrucciones-box:last-child {
+    border-bottom: none;
+}
+
+.close {
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    z-index: 1003;
+}
+
+.close:hover {
+    color: red;
+}
+
+@media (min-width: 300px) and (max-width: 991px) {
+    main {
+        width: 100%;
+    }
+    .page {
+        height: calc(100vh - 50px);
+    }
+    aside {
+        position: fixed;
+        top: 0;
+        right: 0;
+        border: none;
+        width: 100%;
+        max-width: 300px;
+        height: 100vh;
+        z-index: 1000;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    aside.active {
+        display: block;
+        transform: translateX(0);
+    }
+    body.menu-activo {
+        background-color: rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+    }
+}
+
+@media (min-width: 992px) {
+    .contenedor-principal {
+        display: flex;
+    }
+    aside {
+        display: block;
+    }
+    .menu {
+        display: none;
+    }
+    footer {
+        display: block;
+    }
+    .footer-link {
+        display: none;
+    }
+}
+
+@media (min-width:992px) and (max-width:1013px) {
+    .page {
+        height: calc(100vh - 131px);
+    }
+}
+
+@media (min-width: 1014px) {
+    .page {
+        height: calc(100vh - 113px);
+    }
+}
+
+@media (min-width: 1200px) {
+    .page {
+        height: calc(100vh - 123px);
+    }
+    aside {
+        padding: 20px 35px;
+    }
+    .instrucciones-box {
+        padding: 15px 30px;
+    }
 }
