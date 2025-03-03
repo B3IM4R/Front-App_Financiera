@@ -10,7 +10,76 @@
 <body>
     <div class="contenedor-principal">
         <main class="contenido">
-            <section class="page" id="gastos">Salario</section>
+            <section class="page" id="gastos">
+                <div class="contenedor-ingresos">
+                    <h1 class="titulo">Ingresos Totales Mensuales: </h1>
+                    <div class="contenedor-input-ingresos">
+                        <span class="symbol" id="symbol-ingresos">$</span>
+                        <input type="number" id="ingresos" placeholder="2.800.000">
+                    </div>
+                </div>
+                <p>Ahora que sabemos cuánto ganas, vamos a distribuir tus gastos. Por favor, ingresa cuánto gastas 
+                    aproximadamente en cada categoría a continuación. Si no gastas en alguna, déjala en $0.</p>
+                <ol class="lista-categorias">
+                    <li class="categoria">
+                        <span class="nombre-categoria" data-tooltip="Incluye: Supermercado, Restaurantes, Delivery">Alimentación:</span>
+                        <div class="contenedor-input">
+                            <span class="symbol">$</span>
+                            <input type="number" class="input-gastos" placeholder="0">
+                        </div>
+                    </li>
+                    <li class="categoria">
+                        <span class="nombre-categoria" data-tooltip="Incluye: Transporte público, Combustible, Mantenimiento">Movilidad:</span>
+                        <div class="contenedor-input">
+                            <span class="symbol">$</span>
+                            <input type="number" class="input-gastos" placeholder="0">
+                        </div>
+                    </li>
+                    <li class="categoria">
+                        <span class="nombre-categoria" data-tooltip="Incluye: Alquiler/hipoteca, Servicios públicos, Reparaciones">Vivienda:</span>
+                        <div class="contenedor-input">
+                            <span class="symbol">$</span>
+                            <input type="number" class="input-gastos" placeholder="0">
+                        </div>
+                    </li>
+                    <li class="categoria">
+                        <span class="nombre-categoria" data-tooltip="Incluye: Medicamentos, Consultas médicas, Seguro médico">Salud:</span>
+                        <div class="contenedor-input">
+                            <span class="symbol">$</span>
+                            <input type="number" class="input-gastos" placeholder="0">
+                        </div>
+                    </li>
+                    <li class="categoria">
+                        <span class="nombre-categoria" data-tooltip="Incluye: Matrículas, Materiales, Cursos online">Educación:</span>
+                        <div class="contenedor-input">
+                            <span class="symbol">$</span>
+                            <input type="number" class="input-gastos" placeholder="0">
+                        </div>
+                    </li>
+                    <li class="categoria">
+                        <span class="nombre-categoria" data-tooltip="Incluye: Cine, Streaming, Hobbies">Entretenimiento:</span>
+                        <div class="contenedor-input">
+                            <span class="symbol">$</span>
+                            <input type="number" class="input-gastos" placeholder="0">
+                        </div>
+                    </li>
+                    <li class="categoria">
+                        <span class="nombre-categoria" data-tooltip="Incluye: Ropa, Accesorios, Cuidado personal">Vestuario:</span>
+                        <div class="contenedor-input">
+                            <span class="symbol">$</span>
+                            <input type="number" class="input-gastos" placeholder="0">
+                        </div>
+                    </li>
+                    <li class="categoria">
+                        <span class="nombre-categoria" data-tooltip="Incluye: Fondo de emergencia, Inversiones, Pagos a deudas">Ahorros:</span>
+                        <div class="contenedor-input">
+                            <span class="symbol">$</span>
+                            <input type="number" class="input-gastos" placeholder="0">
+                        </div>
+                    </li>
+                </ol>
+                <button type="button" class="btn-categoria">+ Agregar Categoría</button>
+            </section>
             <section class="page" id="patrones">Gráficos</section>
             <section class="page" id="recomendacion">Recomendación</section>
         </main>
