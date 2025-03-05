@@ -80,8 +80,32 @@
                 </ol>
                 <button type="button" class="btn-categoria">+ Agregar Categoría</button>
             </section>
-            <section class="page" id="patrones">Gráficos</section>
-            <section class="page" id="recomendacion">Recomendación</section>
+            <section class="page" id="patrones">
+                <h2 class="titulo">Patrones de Consumo</h2>
+                <p> A continuación, se muestra una tabla con el total gastado en cada categoría, junto con el porcentaje que representa de tus ingresos totales mensuales. También podrás visualizar esta información en un gráfico de pastel y un gráfico de barras.
+                </p>
+                <div class="contenedor-porcentajes">
+                    <div class="contenedor-tabla">
+                        <table id="tabla-datos">
+                            <thead>
+                                <tr>
+                                    <th>Categoría</th>
+                                    <th>Total Gastado</th>
+                                    <th>Porcentaje</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Datos se llenan dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="contenedor-pastel"><canvas id="pie-chart"></canvas></div>
+                </div>
+                <div class="contenedor-barras"><canvas id="bar-chart"></canvas></div>
+            </section>
+            <section class="page" id="recomendacion">Recomendación
+                <input type="number" style="background-color: red;">
+            </section>
         </main>
         <aside id="menu-lateral">
             <h2>Gestiona tu Salario</h2>
@@ -107,5 +131,9 @@
             <div id="modal-instrucciones"></div></div>
     </div>
     <script src="./JS/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intersection-observer/intersection-observer.js"></script>
+    <script src="./JS/consumption-patterns.js"></script>
 </body>
 </html>

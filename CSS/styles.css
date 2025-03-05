@@ -163,6 +163,13 @@ input[type="number"]::-webkit-outer-spin-button {
     background-color: #fff;
 }
 
+#patrones p {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
 aside {
     position: sticky;
     top: 0;
@@ -367,6 +374,54 @@ aside.active {
     display: block;
     overflow-y: auto;
     padding-bottom: 65px;
+}
+
+.contenedor-porcentajes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.contenedor-tabla {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contenedor-pastel {
+    flex: 1;
+    min-height: 400px;
+}
+
+#pie-chart {
+}
+
+.contenedor-barras {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#bar-chart {
+    min-height: 200px;
+}
+
+canvas {
+    max-width: 300px;
+    max-height: 450px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
 }
 
 @media (max-height:740px) {
