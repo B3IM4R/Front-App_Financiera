@@ -84,6 +84,9 @@
                 <h2 class="titulo">Patrones de Consumo</h2>
                 <p> A continuación, se muestra una tabla con el total gastado en cada categoría, junto con el porcentaje que representa de tus ingresos totales mensuales. También podrás visualizar esta información en un gráfico de pastel y un gráfico de barras.
                 </p>
+                <div id="mensaje-advertencia" style="display: none; color: red; text-align: center; margin-top: 20px;">
+                    Por favor, completa el campo de ingresos totales y asegúrate de llenar al menos 4 categorías con gastos mayores a cero.
+                </div>
                 <div class="contenedor-porcentajes">
                     <div class="contenedor-tabla">
                         <table id="tabla-datos">
@@ -130,10 +133,10 @@
             <span id="close-modal" class="close">&times;</span>
             <div id="modal-instrucciones"></div></div>
     </div>
-    <script src="./JS/script.js"></script>
+    <script src="./JS/navigation.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script src="https://cdn.jsdelivr.net/npm/intersection-observer/intersection-observer.js"></script>
-    <script src="./JS/consumption-patterns.js"></script>
+    <script src="./JS/main.js"></script>
 </body>
 </html>
