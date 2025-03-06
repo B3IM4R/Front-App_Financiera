@@ -37,17 +37,11 @@ main {
     pointer-events: none;
 }
 
-input[type="number"] {
+input[type="text"] {
     padding: 0;
     border: none;
     outline: none;
     text-align: left;
-}
-
-input[type="number"]::-webkit-inner-spin-button, 
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
 }
 
 .contenedor-ingresos {

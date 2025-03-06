@@ -2,9 +2,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const ingresosInput = document.getElementById("ingresos");
     const gastosInputs = document.querySelectorAll(".input-gastos");
 
+    function formatNumber(value) {
+        return value.replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
     function validateNumber(input) {
-        let value = input.value.replace(/[^0-9]/g, "");
-        input.value = value;
+        let rawValue = input.value.replace(/\D/g, "");
+        input.value = formatNumber(rawValue);
     }
 
     ingresosInput.addEventListener("input", () => validateNumber(ingresosInput));
@@ -14,17 +19,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function validateGastosVsIngresos() {
-        const ingresosValue = Number(ingresosInput.value);
-        if (!ingresosValue || ingresosValue <= 0) return;
+        const ingresosValue = Number(ingresosInput.value.replace(/\./g, ""));
+        if (!ingresosValue || ingresosValue <= 0) {
+            alert("Por favor, completa el campo de ingresos totales antes de ingresar gastos.");
+            gastosInputs.forEach((input) => input.value = "");
+            return;
+        }
 
-        const totalGastos = Array.from(gastosInputs).reduce((sum, input) => sum + Number(input.value), 0);
+        const totalGastos = Array.from(gastosInputs).reduce((sum, input) => {
+            const gasto = Number(input.value.replace(/\./g, ""));
+            return sum + gasto;
+        }, 0);
 
         if (totalGastos > ingresosValue) {
             alert("El total de gastos no puede superar los ingresos.");
 
             for (let i = gastosInputs.length - 1; i >= 0; i--) {
                 const input = gastosInputs[i];
-                const gasto = Number(input.value);
+                const gasto = Number(input.value.replace(/\./g, ""));
 
                 if (gasto > 0) {
                     input.value = "";

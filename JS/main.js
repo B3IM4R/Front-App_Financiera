@@ -15,32 +15,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function generateData() {
-        const ingresosValue = Number(ingresosInput.value);
+        const ingresosValue = Number(ingresosInput.value.replace(/\./g, ""));
         if (!ingresosValue || ingresosValue <= 0) {
             mensajeAdvertencia.textContent =
                 "Por favor, completa el campo de ingresos totales.";
             mensajeAdvertencia.style.display = "block";
             return null;
         }
-
+    
         const categorias = [];
         gastosInputs.forEach((input) => {
             const categoria = input.closest(".categoria").querySelector(".nombre-categoria").textContent.trim();
-            const gasto = Number(input.value) || 0;
+            const gasto = Number(input.value.replace(/\./g, "")) || 0;
             if (gasto > 0) {
                 categorias.push({ nombre: categoria, gasto });
             }
         });
-
+    
         if (categorias.length < 4) {
             mensajeAdvertencia.textContent =
                 "Debes llenar al menos 4 categorías con gastos mayores a cero.";
             mensajeAdvertencia.style.display = "block";
             return null;
         }
-
+    
         const totalGastos = categorias.reduce((sum, item) => sum + item.gasto, 0);
-
+    
         if (totalGastos !== ingresosValue) {
             mensajeAdvertencia.textContent =
                 "Los gastos no cubren el 100% de los ingresos.";
@@ -48,11 +48,12 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             mensajeAdvertencia.style.display = "none";
         }
-
+    
         categorias.forEach((item) => {
-            item.porcentaje = Math.floor((item.gasto / ingresosValue) * 100);
+            const porcentaje = (item.gasto / ingresosValue) * 100;
+            item.porcentaje = porcentaje % 1 === 0 ? porcentaje.toFixed(0) : porcentaje.toFixed(1);
         });
-
+    
         return { categorias, totalGastos };
     }
 
@@ -76,12 +77,12 @@ document.addEventListener("DOMContentLoaded", () => {
     function createPieChart(data, colores) {
         console.log("Creando Gráfico de pastel");
         const pieChartCanvas = document.getElementById("pie-chart");
-
-        if (pieChartCanvas.chartInstance) {
-            pieChartCanvas.chartInstance.destroy();
+    
+        if (pieChartInstance) {
+            pieChartInstance.destroy();
         }
-
-        pieChartCanvas.chartInstance = new Chart(pieChartCanvas, {
+    
+        pieChartInstance = new Chart(pieChartCanvas, {
             type: "pie",
             data: {
                 labels: data.map((item) => item.nombre),
@@ -113,9 +114,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     datalabels: {
                         formatter: (value, context) => {
                             const dataset = context.chart.data.datasets[0];
-                            const ingresosValue = Number(ingresosInput.value);
-                            const percentage = Math.floor((value / ingresosValue) * 100);
-                            return `${percentage}%`;
+                            const index = context.dataIndex;
+                            const porcentaje = data[index].porcentaje;
+                            return `${porcentaje}%`;
                         },
                         color: (context) => darkenColor(context.dataset.backgroundColor[context.dataIndex]),
                         font: { weight: "bold", size: 14 },
