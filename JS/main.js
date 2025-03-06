@@ -57,6 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function createTable(data) {
+        const tablaDatosActivo = document.querySelector("#tabla-datos");
+        tablaDatosActivo.style.display = "block";
         const tablaDatos = document.querySelector("#tabla-datos tbody");
         tablaDatos.innerHTML = "";
 

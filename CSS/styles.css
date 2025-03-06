@@ -387,6 +387,10 @@ aside.active {
     min-width: 300px;
 }
 
+#tabla-datos {
+    display: none;
+}
+
 .contenedor-pastel {
     flex: 1;
     min-height: 400px;
@@ -424,12 +428,6 @@ canvas {
     animation: fadeIn 0.5s ease-out;
 }
 
-@media (max-height:740px) {
-    .page {
-        height: auto !important;
-    }
-}
-
 @media (max-width: 400px) {
     .page {
         padding: 20px;
@@ -464,6 +462,9 @@ canvas {
     .lista-categorias {
         grid-template-columns: 1fr;
         gap: 10px 0;
+    }
+    .page {
+        height: auto !important;
     }
 }
 
