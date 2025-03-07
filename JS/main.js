@@ -74,6 +74,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    Chart.defaults.font.family = "Inter";
+
     function createPieChart(data, colores) {
         console.log("Creando Gráfico de pastel");
         const pieChartCanvas = document.getElementById("pie-chart");
@@ -98,6 +100,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 maintainAspectRatio: false,
                 animation: { duration: 2000 },
                 plugins: {
+                    title: {
+                        display: true,
+                        text: "Porcentaje Gastado por Categoría",
+                        font: { weight: "500", size: 16 },
+                        padding: {
+                            bottom: 0,
+                        },
+                    },
                     legend: {
                         display: true,
                         position: "bottom",
@@ -162,6 +172,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     },
                 },
                 plugins: {
+                    title: {
+                        display: true,
+                        text: "Cantidad Gastada por Categoría",
+                        font: { size: 16, weight: "500" },
+                    },
                     legend: {
                         display: false,
                     },
