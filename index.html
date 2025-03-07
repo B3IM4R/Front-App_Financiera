@@ -15,7 +15,7 @@
                     <h1 class="titulo">Ingresos Totales Mensuales: </h1>
                     <div class="contenedor-input-ingresos">
                         <span class="symbol" id="symbol-ingresos">$</span>
-                        <input type="text" id="ingresos" placeholder="2.800.000">
+                        <input type="text" id="ingresos" placeholder="2.800.000" inputmode="numeric">
                     </div>
                 </div>
                 <p>Ahora que sabemos cuánto ganas, vamos a distribuir tus gastos. Por favor, ingresa cuánto gastas 
@@ -25,7 +25,7 @@
                         <span class="nombre-categoria" data-tooltip="Incluye: Supermercado, Restaurantes, Delivery">Alimentación:</span>
                         <div class="contenedor-input">
                             <span class="symbol">$</span>
-                            <input type="text" class="input-gastos" placeholder="0">
+                            <input type="text" class="input-gastos" placeholder="0" pattern="[0-9]*">
                         </div>
                     </li>
                     <li class="categoria">
