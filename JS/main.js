@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let pieChartInstance = null;
     let barChartInstance = null;
 
-    const colores = ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40", "#C9CBCF", "#FF6F61"];
+    const colores = ["#FF6384", "#36A2EB", "#FFD700", "#4BC0C0", "#6C5CE7", "#FF9F40", "#A7C7E7", "#7FFF00", "#E040FB"];
     const mensajeAdvertencia = document.getElementById("mensaje-advertencia");
 
     function darkenColor(hexColor, factor = 0.7) {
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
             mensajeAdvertencia.style.display = "block";
             return null;
         }
-    
+
         const categorias = [];
         gastosInputs.forEach((input) => {
             const categoria = input.closest(".categoria").querySelector(".nombre-categoria").textContent.trim();
@@ -31,16 +31,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 categorias.push({ nombre: categoria, gasto });
             }
         });
-    
+
         if (categorias.length < 4) {
             mensajeAdvertencia.textContent =
                 "Debes llenar al menos 4 categorías con gastos mayores a cero.";
             mensajeAdvertencia.style.display = "block";
             return null;
         }
-    
+
         const totalGastos = categorias.reduce((sum, item) => sum + item.gasto, 0);
-    
+
         if (totalGastos !== ingresosValue) {
             mensajeAdvertencia.textContent =
                 "Los gastos no cubren el 100% de los ingresos.";
@@ -48,12 +48,12 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             mensajeAdvertencia.style.display = "none";
         }
-    
+
         categorias.forEach((item) => {
             const porcentaje = (item.gasto / ingresosValue) * 100;
             item.porcentaje = porcentaje % 1 === 0 ? porcentaje.toFixed(0) : porcentaje.toFixed(1);
         });
-    
+
         return { categorias, totalGastos };
     }
 
@@ -74,16 +74,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    Chart.defaults.font.family = "Inter";
-
     function createPieChart(data, colores) {
         console.log("Creando Gráfico de pastel");
         const pieChartCanvas = document.getElementById("pie-chart");
-    
+
         if (pieChartInstance) {
             pieChartInstance.destroy();
         }
-    
+
         pieChartInstance = new Chart(pieChartCanvas, {
             type: "pie",
             data: {
@@ -110,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     },
                     legend: {
                         display: true,
-                        position: "bottom",
+                        position: "top",
                     },
                     tooltip: {
                         callbacks: {
@@ -140,11 +138,11 @@ document.addEventListener("DOMContentLoaded", () => {
     function createBarChart(data, colores) {
         console.log("Creando Gráfico de barras");
         const barChartCanvas = document.getElementById("bar-chart");
-
+    
         if (barChartCanvas.chartInstance) {
             barChartCanvas.chartInstance.destroy();
         }
-
+    
         barChartCanvas.chartInstance = new Chart(barChartCanvas, {
             type: "bar",
             data: {
@@ -162,7 +160,16 @@ document.addEventListener("DOMContentLoaded", () => {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                animation: { duration: 2000 },
+                animation: {
+                    duration: 2000,
+                    delay: (context) => {
+                        let delay = 0;
+                        if (context.type === "data" && context.mode === "default") {
+                            delay = context.dataIndex * 200;
+                        }
+                        return delay;
+                    },
+                },
                 scales: {
                     y: {
                         beginAtZero: true,
@@ -199,6 +206,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function setupObservers() {
+        function calculateRootMargin() {
+            const screenWidth = window.innerWidth;
+
+            if (screenWidth < 992) {
+                return "0px 0px -50px 0px";
+            } else {
+                return "0px 0px -140px 0px";
+            }
+        }
+
         const observers = [
             { target: ".contenedor-tabla", callback: (data) => createTable(data.categorias) },
             { target: ".contenedor-pastel", callback: (data) => createPieChart(data.categorias, colores) },
@@ -216,7 +233,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { rootMargin: "0px 0px -100px 0px", threshold: 1.0 });
+            }, { 
+                rootMargin: calculateRootMargin(),
+                threshold: 1.0 
+            });
 
             const container = document.querySelector(target);
             if (container) observer.observe(container);
@@ -225,11 +245,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function setupInputListeners() {
         ingresosInput.addEventListener("input", () => {
+            generateData();
             setupObservers();
         });
 
         gastosInputs.forEach((input) => {
             input.addEventListener("input", () => {
+                generateData();
                 setupObservers();
             });
         });

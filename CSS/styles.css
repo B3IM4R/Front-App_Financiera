@@ -22,7 +22,8 @@ main {
 }
 
 .page {
-    padding: 30px;
+    height: auto;
+    padding: 15px 30px;
 }
 
 .titulo {
@@ -145,16 +146,15 @@ input[type="text"] {
     width: 100px;
 }
 
-.btn-categoria {
+.summary {
     margin-top: 30px;
-    padding: 12px 20px 12px 18px;
-    font-size: 1rem;
-    color: #2C3E50;
-    border: 1px solid #707070;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    background-color: #fff;
+    font-size: 18px;
+}
+
+.summary-value {
+    color: #707070;
+    font-size: 20px;
+    margin-left: 10px;
 }
 
 #patrones p {
@@ -377,39 +377,74 @@ aside.active {
 .contenedor-porcentajes {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 10px;
     margin-top: 10px;
 }
 
 .contenedor-tabla {
     flex: 1;
-    min-width: 300px;
+    min-width: 320px;
+    justify-items: center;
+    align-content: center;
 }
 
 #tabla-datos {
     display: none;
+    width: fit-content;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #554B39;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+#tabla-datos th {
+    border-right: 1px solid #554B39;
+    border-bottom: 1px solid #554B39;
+}
+
+#tabla-datos th, #tabla-datos td {
+    padding: 10px;
+    text-align: left;
+}
+
+#tabla-datos th:last-child {
+    border-right: none;
+}
+
+#tabla-datos th {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+#tabla-datos tr:nth-child(even) {
+    background-color: #f4f4f4;
+}
+
+#tabla-datos tr:hover {
+    background-color: #ddd;
 }
 
 .contenedor-pastel {
     flex: 1;
     min-height: 400px;
+    justify-items: center;
 }
 
 #pie-chart {
+    max-width: 350px;
 }
 
 .contenedor-barras {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 #bar-chart {
+    width: 100%;
     min-height: 200px;
-}
-
-canvas {
-    max-width: 300px;
-    max-height: 450px;
+    max-height: 260px;
 }
 
 @keyframes fadeIn {
@@ -429,7 +464,7 @@ canvas {
 
 @media (max-width: 400px) {
     .page {
-        padding: 20px;
+        padding: 15px 20px;
     }
 }
 
@@ -445,9 +480,6 @@ canvas {
     main {
         width: 100%;
     }
-    .page {
-        height: calc(100vh - 50px);
-    }
     aside {
         position: fixed;
         right: 0;
@@ -462,8 +494,12 @@ canvas {
         grid-template-columns: 1fr;
         gap: 10px 0;
     }
-    .page {
-        height: auto !important;
+    .contenedor-tabla {
+        justify-items: start;
+        align-content: normal;
+    }
+    .contenedor-pastel {
+        justify-items: start;
     }
 }
 
@@ -494,25 +530,13 @@ canvas {
     }
 }
 
-@media (min-width:992px) and (max-width:1013px) {
-    .page {
-        height: calc(100vh - 131px);
-    }
-}
-
 @media (min-width: 1014px) {
-    .page {
-        height: calc(100vh - 113px);
-    }
     aside {
         padding: 30px 35px;
     }
 }
 
 @media (min-width: 1200px) {
-    .page {
-        height: calc(100vh - 123px);
-    }
     .instrucciones-box {
         padding: 15px 30px;
     }

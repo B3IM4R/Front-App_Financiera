@@ -77,14 +77,23 @@
                             <input type="text" class="input-gastos" placeholder="0" inputmode="numeric">
                         </div>
                     </li>
+                    <li class="categoria">
+                        <span class="nombre-categoria" data-tooltip="Incluye otros gastos adicionales">Otros:</span>
+                        <div class="contenedor-input">
+                            <span class="symbol">$</span>
+                            <input type="text" class="input-gastos" placeholder="0" inputmode="numeric">
+                        </div>
+                    </li>
                 </ol>
-                <button type="button" class="btn-categoria">+ Agregar Categoría</button>
+                <div class="summary">
+                    Suma de gastos:
+                    <span class="summary-value" id="gastos-acumulados">$ 0</span>
+                </div>
+                <div id="mensaje-advertencia"></div>
             </section>
             <section class="page" id="patrones">
                 <h2 class="titulo">Patrones de Consumo</h2>
-                <p> A continuación, se muestra una tabla con el total gastado en cada categoría, junto con el porcentaje que representa de tus ingresos totales mensuales. También podrás visualizar esta información en un gráfico de pastel y un gráfico de barras.
-                </p>
-                <div id="mensaje-advertencia"></div>
+                <p>A continuación, se muestra el gasto total por categoría y su porcentaje respecto a tus ingresos mensuales. Esta información también se presenta en gráficos de pastel y barras.</p>
                 <div class="contenedor-porcentajes">
                     <div class="contenedor-tabla">
                         <table id="tabla-datos">
@@ -105,7 +114,6 @@
                 <div class="contenedor-barras"><canvas id="bar-chart"></canvas></div>
             </section>
             <section class="page" id="recomendacion">Recomendación
-                <input type="number" style="background-color: red;">
             </section>
         </main>
         <aside id="menu-lateral">
