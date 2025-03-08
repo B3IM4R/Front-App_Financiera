@@ -15,7 +15,7 @@ const instrucciones = [
         descripcion: "Observa los gráficos de tu gestión de recursos y oprime en 'Generar' para recibir una recomendación personalizada.",
     },
     {
-        titulo: "Aprende y Edúcates",
+        titulo: "Aprende y Edúcate",
         descripcion: "Explora los recursos de la página para mejorar tus hábitos financieros y tomar decisiones más informadas.",
     }
 ];
