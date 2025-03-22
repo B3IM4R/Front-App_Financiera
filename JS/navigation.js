@@ -31,11 +31,6 @@ function generarInstrucciones(contenedor) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const footerInstrucciones = document.getElementById('footer-instrucciones');
-    if (footerInstrucciones) {
-        generarInstrucciones(footerInstrucciones);
-    }
-
     const modalInstrucciones = document.getElementById('modal-instrucciones');
     if (modalInstrucciones) {
         generarInstrucciones(modalInstrucciones);
@@ -56,13 +51,14 @@ function toggleMenu() {
 menuToggle.addEventListener('click', toggleMenu);
 
 openModal.addEventListener('click', (event) => {
-    openModal.style.color = '#007BFF';
+    openModal.classList.add('active');
     event.preventDefault();
     modal.style.display = 'block';
 });
 
 closeModal.addEventListener('click', () => {
     openModal.style.color = '';
+    openModal.classList.remove('active');
     modal.style.display = 'none';
 });
 

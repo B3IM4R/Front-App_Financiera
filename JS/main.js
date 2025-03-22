@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const totalGastos = categorias.reduce((sum, item) => sum + item.gasto, 0);
 
         if (totalGastos !== ingresosValue) {
+            mensajeAdvertencia.style.color = "#34C759";
             mensajeAdvertencia.textContent =
                 "Los gastos no cubren el 100% de los ingresos.";
             mensajeAdvertencia.style.display = "block";
@@ -73,6 +74,8 @@ document.addEventListener("DOMContentLoaded", () => {
             tablaDatos.appendChild(row);
         });
     }
+
+    Chart.defaults.font.family = "'Inter', sans-serif";
 
     function createPieChart(data, colores) {
         console.log("Creando Gráfico de pastel");
@@ -212,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (screenWidth < 992) {
                 return "0px 0px -50px 0px";
             } else {
-                return "0px 0px -140px 0px";
+                return "0px 0px 0px 0px";
             }
         }
 
