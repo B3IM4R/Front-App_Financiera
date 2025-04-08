@@ -442,6 +442,10 @@ strong {
     color: #fff;
 }
 
+#respuesta-api {
+    min-height: 80px;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
