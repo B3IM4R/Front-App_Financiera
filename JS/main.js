@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let pieChartInstance = null;
     let barChartInstance = null;
 
-    const colores = ["#FF6384", "#36A2EB", "#FFD700", "#4BC0C0", "#6C5CE7", "#FF9F40", "#A7C7E7", "#7FFF00", "#E040FB"];
+    const colores = ["#FF6384", "#36A2EB", "#FFD700", "#4BC0C0", "#6C5CE7", "#FF9F40", "#A7C7E7", "#7FFF00", "#E040FB", "#B4764F"];
     const mensajeAdvertencia = document.getElementById("mensaje-advertencia");
 
     function darkenColor(hexColor, factor = 0.7) {
