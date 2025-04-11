@@ -81,3 +81,12 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+document.querySelectorAll('.acordeon-header').forEach(header => {
+    header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        const arrow = header.querySelector('.arrow');
+        content.classList.toggle('open');
+        header.classList.toggle('open');
+    });
+});
