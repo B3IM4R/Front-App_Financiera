@@ -1,4 +1,3 @@
-// Función para escribir texto letra por letra
 function escribirTextoGradualmente(elemento, texto, velocidad = 30, callback = () => {}) {
     let i = 0;
     function escribir() {
@@ -13,10 +12,12 @@ function escribirTextoGradualmente(elemento, texto, velocidad = 30, callback = (
     escribir();
 }
 
-// Mostrar recomendaciones una por una con efecto
 async function mostrarRecomendacionesConDelay(recomendaciones, contenedor) {
+    const titulo = document.createElement("h3");
+    titulo.textContent = "Recomendaciones Personalizadas:";
+    contenedor.appendChild(titulo);
+
     const ul = document.createElement("ul");
-    ul.classList.add("list-disc", "pl-6", "text-green-600");
     contenedor.appendChild(ul);
 
     for (let i = 0; i < recomendaciones.length; i++) {
@@ -29,6 +30,24 @@ async function mostrarRecomendacionesConDelay(recomendaciones, contenedor) {
 
         await new Promise(r => setTimeout(r, 300));
     }
+}
+
+async function mostrarSeccionConTitulo(contenedor, tituloTexto, descripcionTexto) {
+    const titulo = document.createElement("h3");
+    contenedor.appendChild(titulo);
+
+    await new Promise(resolve => {
+        escribirTextoGradualmente(titulo, tituloTexto, 30, resolve);
+    });
+
+    const descripcion = document.createElement("p");
+    contenedor.appendChild(descripcion);
+
+    await new Promise(resolve => {
+        escribirTextoGradualmente(descripcion, descripcionTexto, 25, resolve);
+    });
+
+    await new Promise(r => setTimeout(r, 500));
 }
 
 document.getElementById("btn-generar").addEventListener("click", async () => {
@@ -44,11 +63,11 @@ document.getElementById("btn-generar").addEventListener("click", async () => {
     }
 
     let categorias = [
-        "alimentacion", "movilidad", "vivienda", "salud",
-        "educacion", "entretenimiento", "vestuario", "ahorros", "deudas", "otros"
+        "Alimentación", "Movilidad", "Vivienda", "Salud",
+        "Educación", "Entretenimiento", "Vestuario", "Ahorros", "Deudas", "Otros"
     ];
 
-    let datos = { ingresos };
+    let datos = { Ingreso: ingresos };
     let categoriasLlenas = 0;
 
     inputsGastos.forEach((input, index) => {
@@ -64,13 +83,12 @@ document.getElementById("btn-generar").addEventListener("click", async () => {
         return;
     }
 
-    // Desactivar botón y cambiar texto
     boton.disabled = true;
     boton.style.backgroundColor = "#18487A";
     boton.textContent = "Generando...";
 
     try {
-        const respuesta = await fetch("http://localhost:8000/recomendar", {
+        const respuesta = await fetch("https://api-app-financiera.onrender.com/recomendar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -81,20 +99,24 @@ document.getElementById("btn-generar").addEventListener("click", async () => {
         const resultado = await respuesta.json();
         contenedor.innerHTML = "";
 
-        if (resultado.Recomendaciones && resultado.Recomendaciones.length > 0) {
-            await mostrarRecomendacionesConDelay(resultado.Recomendaciones, contenedor);
+        if (resultado) {
+            await mostrarSeccionConTitulo(
+                contenedor,
+                "📈 Clasificación Financiera: " + resultado["Clasificación Financiera"],
+                resultado["Descripción Clasificación"]
+            );
 
-            // También podrías mostrar las clasificaciones y descripciones si quieres:
-            const info = document.createElement("div");
-            info.innerHTML = `
-                <p><strong>Clasificación Financiera:</strong> ${resultado["Clasificación Financiera"]}</p>
-                <p>${resultado["Descripción Clasificación"]}</p>
-                <p><strong>Perfil Financiero:</strong> ${resultado["Perfil Financiero"]}</p>
-                <p>${resultado["Descripción Perfil"]}</p>
-            `;
-            contenedor.prepend(info);
+            await mostrarSeccionConTitulo(
+                contenedor,
+                "💼 Perfil Financiero: " + resultado["Perfil Financiero"],
+                resultado["Descripción Perfil"]
+            );
+
+            if (resultado.Recomendaciones && resultado.Recomendaciones.length > 0) {
+                await mostrarRecomendacionesConDelay(resultado.Recomendaciones, contenedor);
+            }
         } else {
-            contenedor.innerText = "No se recibieron recomendaciones.";
+            contenedor.innerText = "No se recibieron datos válidos del servidor.";
         }
 
     } catch (error) {
@@ -102,7 +124,6 @@ document.getElementById("btn-generar").addEventListener("click", async () => {
         console.error("Error:", error);
     }
 
-    // Reactivar botón y restaurar texto
     boton.disabled = false;
     boton.style.backgroundColor = "#002247";
     boton.textContent = "Generar";
