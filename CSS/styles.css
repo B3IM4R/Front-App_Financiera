@@ -660,6 +660,11 @@ aside.active {
     .page {
         padding: 15px;
     }
+    .etiqueta-resultado {
+        margin-left: 0;
+        padding: 5px;
+        gap: 1px;
+    }
 }
 
 @media (max-width:590px) {
@@ -667,11 +672,6 @@ aside.active {
         flex-direction: column;
         gap: 10px;
         text-align: center;
-    }
-    .etiqueta-resultado {
-        margin-left: 0;
-        padding: 5px;
-        gap: 1px;
     }
 }
 
