@@ -12,9 +12,39 @@ function escribirTextoGradualmente(elemento, texto, velocidad = 30, callback = (
     escribir();
 }
 
+function crearEtiquetaPerfil(valor) {
+    const span = document.createElement("span");
+    span.classList.add("etiqueta-resultado");
+
+    const iconos = {
+        "Ahorrador": "💰",
+        "Equilibrado": "⚖️",
+        "Gastador": "💸",
+        "Endeudado": "🧾",
+        "Saludable": "🟢",
+        "Aceptable": "🟡",
+        "Riesgosa": "🟠",
+        "Crítica": "🔴"
+    };
+
+    const iconSpan = document.createElement("span");
+    iconSpan.classList.add("icono-emoji");
+
+    // Asignar clase específica al emoji (ej: emoji-gastador)
+    const claseEmoji = `emoji-${valor.toLowerCase()}`;
+    iconSpan.classList.add(claseEmoji);
+    iconSpan.textContent = iconos[valor] || "";
+
+    span.textContent = valor;
+    span.prepend(iconSpan);
+    span.classList.add(`etiqueta-${valor.toLowerCase()}`);
+
+    return span;
+}
+
 async function mostrarRecomendacionesConDelay(recomendaciones, contenedor) {
-    const titulo = document.createElement("h3");
-    titulo.textContent = "Recomendaciones Personalizadas:";
+    const titulo = document.createElement("h4");
+    titulo.textContent = "Consejos que podrías considerar:";
     contenedor.appendChild(titulo);
 
     const ul = document.createElement("ul");
@@ -25,7 +55,7 @@ async function mostrarRecomendacionesConDelay(recomendaciones, contenedor) {
         ul.appendChild(li);
 
         await new Promise(resolve => {
-            escribirTextoGradualmente(li, recomendaciones[i], 30, resolve);
+            escribirTextoGradualmente(li, recomendaciones[i], 20, resolve);
         });
 
         await new Promise(r => setTimeout(r, 300));
@@ -33,18 +63,28 @@ async function mostrarRecomendacionesConDelay(recomendaciones, contenedor) {
 }
 
 async function mostrarSeccionConTitulo(contenedor, tituloTexto, descripcionTexto) {
-    const titulo = document.createElement("h3");
+    const titulo = document.createElement("h4");
     contenedor.appendChild(titulo);
 
-    await new Promise(resolve => {
-        escribirTextoGradualmente(titulo, tituloTexto, 30, resolve);
-    });
+    const partes = tituloTexto.split(":");
+    if (partes.length === 2) {
+        const label = partes[0] + ": ";
+        const valor = partes[1].trim();
+
+        const spanEtiqueta = crearEtiquetaPerfil(valor);
+        titulo.textContent = label;
+        titulo.appendChild(spanEtiqueta);
+    } else {
+        await new Promise(resolve => {
+            escribirTextoGradualmente(titulo, tituloTexto, 15, resolve);
+        });
+    }
 
     const descripcion = document.createElement("p");
     contenedor.appendChild(descripcion);
 
     await new Promise(resolve => {
-        escribirTextoGradualmente(descripcion, descripcionTexto, 25, resolve);
+        escribirTextoGradualmente(descripcion, descripcionTexto, 15, resolve);
     });
 
     await new Promise(r => setTimeout(r, 500));
@@ -57,8 +97,15 @@ document.getElementById("btn-generar").addEventListener("click", async () => {
     const contenedor = document.getElementById("respuesta-api");
     contenedor.innerHTML = "";
 
+    const crearMensajeAdvertencia = (texto) => {
+        const p = document.createElement("p");
+        p.id = "mensaje-advertencia";
+        p.textContent = texto;
+        contenedor.appendChild(p);
+    };
+
     if (ingresos <= 0) {
-        contenedor.innerText = "Por favor, completa el campo de ingresos totales.";
+        crearMensajeAdvertencia("Por favor, completa el campo de ingresos totales.");
         return;
     }
 
@@ -79,11 +126,12 @@ document.getElementById("btn-generar").addEventListener("click", async () => {
     });
 
     if (categoriasLlenas < 4) {
-        contenedor.innerText = "Debes llenar al menos 4 categorías con gastos mayores a cero.";
+        crearMensajeAdvertencia("Debes llenar al menos 4 categorías con gastos mayores a cero.");
         return;
     }
 
     boton.disabled = true;
+    boton.style.cursor = "not-allowed";
     boton.style.backgroundColor = "#18487A";
     boton.textContent = "Generando...";
 
@@ -102,13 +150,13 @@ document.getElementById("btn-generar").addEventListener("click", async () => {
         if (resultado) {
             await mostrarSeccionConTitulo(
                 contenedor,
-                "📈 Clasificación Financiera: " + resultado["Clasificación Financiera"],
+                "Clasificación Financiera: " + resultado["Clasificación Financiera"],
                 resultado["Descripción Clasificación"]
             );
 
             await mostrarSeccionConTitulo(
                 contenedor,
-                "💼 Perfil Financiero: " + resultado["Perfil Financiero"],
+                "Perfil Financiero: " + resultado["Perfil Financiero"],
                 resultado["Descripción Perfil"]
             );
 
@@ -116,15 +164,16 @@ document.getElementById("btn-generar").addEventListener("click", async () => {
                 await mostrarRecomendacionesConDelay(resultado.Recomendaciones, contenedor);
             }
         } else {
-            contenedor.innerText = "No se recibieron datos válidos del servidor.";
+            crearMensajeAdvertencia("No se recibieron datos válidos del servidor.");
         }
 
     } catch (error) {
-        contenedor.innerText = "Error al conectar con el servidor.";
+        crearMensajeAdvertencia("Error al conectar con el servidor.");
         console.error("Error:", error);
     }
 
     boton.disabled = false;
+    boton.style.cursor = "pointer";
     boton.style.backgroundColor = "#002247";
     boton.textContent = "Generar";
 });

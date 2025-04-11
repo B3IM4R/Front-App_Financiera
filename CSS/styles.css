@@ -74,12 +74,6 @@ input[type="text"] {
     width: 84%;
 }
 
-#gastos p {
-    font-weight: 300;
-    font-size: 1.1rem;
-    margin-bottom: 30px;
-}
-
 .lista-categorias {
     gap: 20px 100px;
     width: 100%;
@@ -88,6 +82,7 @@ input[type="text"] {
     counter-reset: item;
     grid-template-columns: repeat(2, 1fr);
     list-style: none;
+    padding-top: 10px;
 }
 
 .categoria {
@@ -160,13 +155,15 @@ input[type="text"] {
 }
 
 #mensaje-advertencia {
+    font-size: 16px;
+    font-weight: 400;
     margin-top: 10px;
     color: red;
 }
 
 .page p {
     font-size: 1.1rem;
-    font-weight: 300;
+    font-weight: 350;
     margin-top: 15px;
     margin-bottom: 20px;
 }
@@ -422,10 +419,6 @@ aside.active {
     max-height: 260px;
 }
 
-strong {
-    color: #002247;
-}
-
 #btn-generar {
     background-color: #002247;
     color: #fff;
@@ -442,23 +435,107 @@ strong {
     color: #fff;
 }
 
-#respuesta-api {
-    min-height: 80px;
+.contenedor-resultado {
+    margin-top: 20px;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.contenedor-resultado h4 {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #002247;
 }
 
-.fade-in {
-    animation: fadeIn 0.5s ease-out;
+#respuesta-api p {
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+#respuesta-api ul {
+    list-style: none;
+    margin-top: 10px;
+}
+
+#respuesta-api li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #002247;
+    font-size: 1.1rem;
+    font-weight: 350;
+    animation: aparecer 0.5s ease;
+}
+
+.etiqueta-resultado {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: #f0f0f0;
+    animation: aparecer 0.5s ease;
+    margin-left: 4px;
+}
+
+.icono-emoji {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+    font-size: 1.1rem;
+    transform: translateY(-1px);
+}
+
+.etiqueta-ahorrador {
+    background-color: #d4f4dd;
+    color: #0c5b3d;
+}
+.etiqueta-gastador {
+    background-color: #fff3c4;
+    color: #8a6d00;
+}
+.etiqueta-equilibrado {
+    background-color: #e8ecf4;
+    color: #4b5563;
+}
+.etiqueta-endeudado {
+    background-color: #e3dcf7;
+    color: #4b3f72;
+}
+.etiqueta-saludable {
+    background-color: #e0ffe0;
+    color: #0a6b00;
+}
+.etiqueta-aceptable {
+    background-color: #fffbe0;
+    color: #806400;
+}
+.etiqueta-riesgosa {
+    background-color: #fff0e0;
+    color: #d35400;
+}
+.etiqueta-crítica {
+    background-color: #ffe0e0;
+    color: #a00000;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.etiqueta-resultado:hover .icono-emoji {
+    animation: rebote 0.4s ease;
+}
+
+@keyframes rebote {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-3px); }
+    100% { transform: translateY(0); }
 }
 
 @media (max-width: 400px) {
