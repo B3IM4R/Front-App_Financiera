@@ -446,6 +446,10 @@ aside.active {
     color: #002247;
 }
 
+#respuesta-api {
+    margin-bottom: 20px;
+}
+
 #respuesta-api p {
     margin-top: 5px;
     margin-bottom: 0px;

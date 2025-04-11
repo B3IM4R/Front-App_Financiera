@@ -30,7 +30,6 @@ function crearEtiquetaPerfil(valor) {
     const iconSpan = document.createElement("span");
     iconSpan.classList.add("icono-emoji");
 
-    // Asignar clase específica al emoji (ej: emoji-gastador)
     const claseEmoji = `emoji-${valor.toLowerCase()}`;
     iconSpan.classList.add(claseEmoji);
     iconSpan.textContent = iconos[valor] || "";
@@ -42,10 +41,21 @@ function crearEtiquetaPerfil(valor) {
     return span;
 }
 
+function hacerScrollSiEsNecesario(elemento, offset = 500) {
+    const rect = elemento.getBoundingClientRect();
+    const absoluteY = window.scrollY + rect.top;
+
+    window.scrollTo({
+        top: absoluteY + offset,
+        behavior: "smooth"
+    });
+}
+
 async function mostrarRecomendacionesConDelay(recomendaciones, contenedor) {
     const titulo = document.createElement("h4");
     titulo.textContent = "Consejos que podrías considerar:";
     contenedor.appendChild(titulo);
+    hacerScrollSiEsNecesario(titulo);
 
     const ul = document.createElement("ul");
     contenedor.appendChild(ul);
@@ -53,6 +63,7 @@ async function mostrarRecomendacionesConDelay(recomendaciones, contenedor) {
     for (let i = 0; i < recomendaciones.length; i++) {
         const li = document.createElement("li");
         ul.appendChild(li);
+        hacerScrollSiEsNecesario(li);
 
         await new Promise(resolve => {
             escribirTextoGradualmente(li, recomendaciones[i], 20, resolve);
@@ -65,6 +76,7 @@ async function mostrarRecomendacionesConDelay(recomendaciones, contenedor) {
 async function mostrarSeccionConTitulo(contenedor, tituloTexto, descripcionTexto) {
     const titulo = document.createElement("h4");
     contenedor.appendChild(titulo);
+    hacerScrollSiEsNecesario(titulo);
 
     const partes = tituloTexto.split(":");
     if (partes.length === 2) {
@@ -82,6 +94,7 @@ async function mostrarSeccionConTitulo(contenedor, tituloTexto, descripcionTexto
 
     const descripcion = document.createElement("p");
     contenedor.appendChild(descripcion);
+    hacerScrollSiEsNecesario(descripcion);
 
     await new Promise(resolve => {
         escribirTextoGradualmente(descripcion, descripcionTexto, 15, resolve);
@@ -102,6 +115,7 @@ document.getElementById("btn-generar").addEventListener("click", async () => {
         p.id = "mensaje-advertencia";
         p.textContent = texto;
         contenedor.appendChild(p);
+        hacerScrollSiEsNecesario(p);
     };
 
     if (ingresos <= 0) {
