@@ -41,7 +41,7 @@ function crearEtiquetaPerfil(valor) {
     return span;
 }
 
-function hacerScrollSiEsNecesario(elemento, offset = 500) {
+function hacerScrollSiEsNecesario(elemento, offset = -450) {
     const rect = elemento.getBoundingClientRect();
     const absoluteY = window.scrollY + rect.top;
 
