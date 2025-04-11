@@ -538,9 +538,9 @@ aside.active {
     100% { transform: translateY(0); }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
     .page {
-        padding: 15px 20px;
+        padding: 15px;
     }
 }
 
