@@ -282,42 +282,106 @@ a.active {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
 }
 
 .modal-content {
-    background-color: white;
-    margin: 10% auto;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 500px;
+    background-color: #fff;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 100%;
     position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-height: 90vh;
     overflow-y: auto;
-    max-height: 80vh;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    animation: aparecer 0.5s ease;
+    margin: 0;
+    overflow: visible;
 }
 
-.modal-content .instrucciones-box {
-    border: none;
-    border-bottom: 1px solid #707070;
+.titulo-modal {
+    margin: 20px 30px;
+    font-size: 1.6rem;
+    color: #002247;
+    font-weight: 600;
 }
 
-.modal-content .instrucciones-box:last-child {
-    border-bottom: none;
+#modal-instrucciones {
+    padding: 0;
+}
+
+.instrucciones-box {
+    transition: transform 0.2s ease;
+    border-radius: 10px;
+    margin: 30px;
+}
+
+.instrucciones-box:hover {
+    transform: translateY(-3px);
+}
+
+.instrucciones-box h3 {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #002247;
+}
+
+.instrucciones-box .numero {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #002247;
+    color: white;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-weight: bold;
+    margin-right: 12px;
+    font-size: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.instrucciones-box p {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.4;
 }
 
 .close {
     position: absolute;
-    top: 2px;
-    right: 10px;
-    font-size: 24px;
-    font-weight: bold;
-    color: black;
+    top: -16px; /* hace que quede “encima” del borde redondeado */
+    right: -16px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eee;
+    border-radius: 50%;
     cursor: pointer;
     z-index: 1003;
+    transition: background 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.close svg {
+    width: 20px;
+    height: 20px;
+    stroke: #333;
 }
 
 .close:hover {
-    color: red;
+    background: #f44336;
+    transform: rotate(90deg);
+}
+
+.close:hover svg {
+    stroke: white;
 }
 
 body.menu-activo {
@@ -732,11 +796,5 @@ aside.active {
 @media (min-width: 1014px) {
     aside {
         padding: 30px 35px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .instrucciones-box {
-        padding: 15px 30px;
     }
 }

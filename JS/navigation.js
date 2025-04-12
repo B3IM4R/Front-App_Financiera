@@ -5,37 +5,6 @@ const aside = document.getElementById('menu-lateral');
 const openModal = document.getElementById('open-modal');
 const modal = document.getElementById('modal');
 const closeModal = document.getElementById('close-modal');
-const instrucciones = [
-    {
-        titulo: "Organiza tus Datos",
-        descripcion: "Digita y clasifica tus gastos, pasa el cursor sobre las categorías para ver detalles y agrega una si es necesario.",
-    },
-    {
-        titulo: "Recomendación por IA",
-        descripcion: "Observa los gráficos de tu gestión de recursos y oprime en 'Generar' para recibir una recomendación personalizada.",
-    },
-    {
-        titulo: "Aprende y Edúcate",
-        descripcion: "Explora los recursos de la página para mejorar tus hábitos financieros y tomar decisiones más informadas.",
-    }
-];
-
-function generarInstrucciones(contenedor) {
-    const html = instrucciones.map(instruccion => `
-        <div class="instrucciones-box">
-            <h3>${instruccion.titulo}</h3>
-            <p>${instruccion.descripcion}</p>
-        </div>
-    `).join('');
-    contenedor.innerHTML = html;
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    const modalInstrucciones = document.getElementById('modal-instrucciones');
-    if (modalInstrucciones) {
-        generarInstrucciones(modalInstrucciones);
-    }
-});
 
 function toggleMenu() {
     aside.classList.toggle('active');
@@ -53,11 +22,10 @@ menuToggle.addEventListener('click', toggleMenu);
 openModal.addEventListener('click', (event) => {
     openModal.classList.add('active');
     event.preventDefault();
-    modal.style.display = 'block';
+    modal.style.display = 'flex';
 });
 
 closeModal.addEventListener('click', () => {
-    openModal.style.color = '';
     openModal.classList.remove('active');
     modal.style.display = 'none';
 });
