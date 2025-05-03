@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (categorias.length < 4) {
+            mensajeAdvertencia.style.color = "red";
             mensajeAdvertencia.textContent =
                 "Debes llenar al menos 4 categorías con gastos mayores a cero.";
             mensajeAdvertencia.style.display = "block";
@@ -42,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const totalGastos = categorias.reduce((sum, item) => sum + item.gasto, 0);
 
         if (totalGastos !== ingresosValue) {
-            mensajeAdvertencia.style.color = "#34C759";
+            mensajeAdvertencia.style.color = "#707070";
             mensajeAdvertencia.textContent =
                 "Los gastos no cubren el 100% de los ingresos.";
             mensajeAdvertencia.style.display = "block";
