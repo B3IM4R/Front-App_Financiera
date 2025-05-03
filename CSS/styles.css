@@ -290,9 +290,9 @@ a.active {
 
 .modal-content {
     position: relative;
-    width: 95%;
+    width: 90%;
     max-width: 600px;
-    max-height: 90vh;
+    max-height: 80vh;
     display: flex;
     flex-direction: column;
     animation: aparecer 0.5s ease;
