@@ -212,7 +212,7 @@
         </aside>
     </div>
     <div class="menu"><button id="menu-toggle" class="menu-hamburguesa">☰</button></div>
-    <div class="modal" id="modal">
+    <div class="modal hidden" id="modal">
         <div class="modal-content">
             <div id="close-modal" class="close">
                 <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -220,27 +220,29 @@
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
             </div>
-            <h2 class="titulo-modal">Instrucciones de Uso</h2>
-            <div id="modal-instrucciones">
-                <div class="instrucciones-box">
-                    <h3><span class="numero">1</span> Digita tus Ingresos</h3>
-                    <p>Escribe tu ingreso mensual total en el campo que aparece al inicio.</p>
-                </div>
-                <div class="instrucciones-box">
-                    <h3><span class="numero">2</span> Registra tus Gastos</h3>
-                    <p>Llena cada categoría con el monto aproximado que gastas. Si no aplicas en alguna, déjala en $0.</p>
-                </div>
-                <div class="instrucciones-box">
-                    <h3><span class="numero">3</span> Explora tus Patrones de Consumo</h3>
-                    <p>Baja o dirígete a la sección Patrones de Consumo para ver una tabla y gráficos que muestran cómo distribuyes tu dinero.</p>
-                </div>
-                <div class="instrucciones-box">
-                    <h3><span class="numero">4</span> Recibe Recomendaciones</h3>
-                    <p>Ve a la sección Recomendaciones y haz clic en el botón 'Generar' para conocer tu perfil financiero, tu salud financiera y sugerencias personalizadas.</p>
-                </div>
-                <div class="instrucciones-box">
-                    <h3><span class="numero">5</span> Aprende sobre finanzas</h3>
-                    <p>En la sección Aprende sobre finanzas, encuentra recursos educativos, videos y conceptos clave para mejorar tu manejo del dinero.</p>
+            <div class="modal-inner">
+                <h2 class="titulo-modal">Instrucciones de Uso</h2>
+                <div id="modal-instrucciones">
+                    <div class="instrucciones-box" id="i-1">
+                        <h3><span class="numero">1</span> Digita tus Ingresos</h3>
+                        <p>Escribe tu ingreso mensual total en el campo que aparece al inicio.</p>
+                    </div>
+                    <div class="instrucciones-box">
+                        <h3><span class="numero">2</span> Registra tus Gastos</h3>
+                        <p>Llena cada categoría con el monto aproximado que gastas. Si no aplicas en alguna, déjala en $0.</p>
+                    </div>
+                    <div class="instrucciones-box">
+                        <h3><span class="numero">3</span> Explora tus Patrones de Consumo</h3>
+                        <p>Baja o dirígete a la sección Patrones de Consumo para ver una tabla y gráficos que muestran cómo distribuyes tu dinero.</p>
+                    </div>
+                    <div class="instrucciones-box">
+                        <h3><span class="numero">4</span> Recibe Recomendaciones</h3>
+                        <p>Ve a la sección Recomendaciones y haz clic en el botón 'Generar' para conocer tu perfil financiero, tu salud financiera y sugerencias personalizadas.</p>
+                    </div>
+                    <div class="instrucciones-box">
+                        <h3><span class="numero">5</span> Aprende sobre finanzas</h3>
+                        <p>En la sección Aprende sobre finanzas, encuentra recursos educativos, videos y conceptos clave para mejorar tu manejo del dinero.</p>
+                    </div>
                 </div>
             </div>
         </div>

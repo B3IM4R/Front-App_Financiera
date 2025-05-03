@@ -273,13 +273,13 @@ a.active {
     background-color: transparent;
 }
 
-.modal {
+.hidden {
     display: none;
+}
+
+.modal {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 1001;
     display: flex;
@@ -289,17 +289,24 @@ a.active {
 }
 
 .modal-content {
+    position: relative;
+    width: 95%;
+    max-width: 600px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    animation: aparecer 0.5s ease;
+}
+
+.modal-inner {
     background-color: #fff;
     border-radius: 12px;
-    max-width: 600px;
-    width: 100%;
-    position: relative;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    animation: aparecer 0.5s ease;
-    margin: 0;
-    overflow: visible;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
 .titulo-modal {
@@ -310,13 +317,18 @@ a.active {
 }
 
 #modal-instrucciones {
-    padding: 0;
+    overflow-y: auto;
+    flex-grow: 1;
 }
 
 .instrucciones-box {
     transition: transform 0.2s ease;
     border-radius: 10px;
     margin: 30px;
+}
+
+#i-1 {
+    margin: 10px 30px;
 }
 
 .instrucciones-box:hover {
@@ -340,6 +352,7 @@ a.active {
     border-radius: 50%;
     width: 32px;
     height: 32px;
+    flex-shrink: 0;
     font-weight: bold;
     margin-right: 12px;
     font-size: 1rem;
@@ -354,8 +367,8 @@ a.active {
 
 .close {
     position: absolute;
-    top: -16px; /* hace que quede “encima” del borde redondeado */
-    right: -16px;
+    top: -14px;
+    right: -14px;
     width: 36px;
     height: 36px;
     display: flex;
@@ -364,7 +377,7 @@ a.active {
     background: #eee;
     border-radius: 50%;
     cursor: pointer;
-    z-index: 1003;
+    z-index: 1002;
     transition: background 0.2s ease, transform 0.2s ease;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
@@ -384,7 +397,7 @@ a.active {
     stroke: white;
 }
 
-body.menu-activo {
+body.menu-activo, .no-scroll {
     overflow: hidden;
 }
 

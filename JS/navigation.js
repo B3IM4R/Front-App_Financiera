@@ -6,6 +6,29 @@ const openModal = document.getElementById('open-modal');
 const modal = document.getElementById('modal');
 const closeModal = document.getElementById('close-modal');
 
+function mostrarModal() {
+    modal.classList.remove('hidden');
+    modal.style.display = 'flex';
+    document.body.classList.add('no-scroll');
+    openModal.classList.add('active');
+}
+
+function cerrarModal() {
+    modal.classList.add('hidden');
+    modal.style.display = 'none';
+    document.body.classList.remove('no-scroll');
+    openModal.classList.remove('active');
+}
+
+window.addEventListener('DOMContentLoaded', mostrarModal);
+
+openModal.addEventListener('click', (event) => {
+    event.preventDefault();
+    mostrarModal();
+});
+
+closeModal.addEventListener('click', cerrarModal);
+
 function toggleMenu() {
     aside.classList.toggle('active');
     document.body.classList.toggle('menu-activo');
@@ -16,19 +39,7 @@ function toggleMenu() {
         menuToggle.textContent = '☰';
     }
 }
-
 menuToggle.addEventListener('click', toggleMenu);
-
-openModal.addEventListener('click', (event) => {
-    openModal.classList.add('active');
-    event.preventDefault();
-    modal.style.display = 'flex';
-});
-
-closeModal.addEventListener('click', () => {
-    openModal.classList.remove('active');
-    modal.style.display = 'none';
-});
 
 window.addEventListener('scroll', () => {
     let current = '';
