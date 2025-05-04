@@ -53,7 +53,7 @@ function hacerScrollSiEsNecesario(elemento, offset = -450) {
 
 async function mostrarRecomendacionesConDelay(recomendaciones, contenedor) {
     const titulo = document.createElement("h4");
-    titulo.textContent = "Consejos que podrías considerar:";
+    titulo.textContent = "Recomendaciones que podrías considerar:";
     contenedor.appendChild(titulo);
     hacerScrollSiEsNecesario(titulo);
 
