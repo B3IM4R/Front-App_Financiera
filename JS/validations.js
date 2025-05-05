@@ -38,29 +38,41 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        let totalGastos = Array.from(gastosInputs).reduce((sum, input) => {
+        let totalGastos = 0;
+        let eliminadosIndividuales = [];
+
+        gastosInputs.forEach((input, i) => {
             const gasto = Number(input.value.replace(/\./g, ""));
-            return sum + gasto;
+            if (gasto > ingresosValue) {
+                eliminadosIndividuales.push(input.dataset.label || `Campo ${i + 1}`);
+                input.value = "";
+            }
+        });
+
+        totalGastos = Array.from(gastosInputs).reduce((sum, input) => {
+            return sum + Number(input.value.replace(/\./g, ""));
         }, 0);
 
+        let eliminadosPorSuma = [];
+
         if (totalGastos > ingresosValue) {
-            alert("El total de gastos no puede superar los ingresos.");
-
-            let eliminados = [];
-
             for (let i = gastosInputs.length - 1; i >= 0 && totalGastos > ingresosValue; i--) {
                 const input = gastosInputs[i];
                 const gasto = Number(input.value.replace(/\./g, ""));
                 if (gasto > 0) {
-                    eliminados.push(input.dataset.label || `Campo ${i + 1}`);
+                    eliminadosPorSuma.push(input.dataset.label || `Campo ${i + 1}`);
                     input.value = "";
                     totalGastos -= gasto;
                 }
             }
+        }
 
-            if (eliminados.length > 0) {
-                alert(`Se eliminarán automáticamente los valores de los siguientes campos para no superar los ingresos:\n\n- ${eliminados.join('\n- ')}`);
-            }
+        if (eliminadosIndividuales.length > 0) {
+            alert(`Se eliminarán los siguientes campos porque superan individualmente los ingresos:\n\n- ${eliminadosIndividuales.join('\n- ')}`);
+        }
+
+        if (eliminadosPorSuma.length > 0) {
+            alert(`Se eliminarán los siguientes campos para que la suma de gastos no superara los ingresos:\n\n- ${eliminadosPorSuma.join('\n- ')}`);
         }
 
         updateGastosAcumulados();
