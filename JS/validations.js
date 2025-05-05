@@ -68,11 +68,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (eliminadosIndividuales.length > 0) {
-            alert(`Se eliminarán los siguientes campos porque superan individualmente los ingresos:\n\n- ${eliminadosIndividuales.join('\n- ')}`);
+            alert(`Se eliminarán los valores de los siguientes campos porque superan individualmente los ingresos:\n\n- ${eliminadosIndividuales.join('\n- ')}`);
         }
 
         if (eliminadosPorSuma.length > 0) {
-            alert(`Se eliminarán los siguientes campos para que la suma de gastos no superara los ingresos:\n\n- ${eliminadosPorSuma.join('\n- ')}`);
+            alert(`Se eliminarán los valores de los siguientes campos para que la suma total de gastos no supere los ingresos:\n\n- ${eliminadosPorSuma.join('\n- ')}`);
         }
 
         updateGastosAcumulados();
