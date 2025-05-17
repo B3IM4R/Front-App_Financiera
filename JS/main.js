@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const ingresosInput = document.getElementById("ingresos");
     const gastosInputs = document.querySelectorAll(".input-gastos");
     let pieChartInstance = null;
-    let barChartInstance = null;
 
     const colores = ["#FF6384", "#36A2EB", "#FFD700", "#4BC0C0", "#6C5CE7", "#FF9F40", "#A7C7E7", "#7FFF00", "#E040FB", "#B4764F"];
     const mensajeAdvertencia = document.getElementById("mensaje-advertencia");
@@ -118,17 +117,18 @@ document.addEventListener("DOMContentLoaded", () => {
                         callbacks: {
                             label: (context) => {
                                 const label = context.label || "";
-                                const value = context.raw || 0;
-                                return `${label}: $${value.toLocaleString("es-CO")}`;
+                                const index = context.dataIndex;
+                                const porcentaje = data[index].porcentaje;
+                                return ` ${label} ${porcentaje}%`;
                             },
+                            title: () => '',
                         },
                     },
                     datalabels: {
                         formatter: (value, context) => {
-                            const dataset = context.chart.data.datasets[0];
                             const index = context.dataIndex;
                             const porcentaje = data[index].porcentaje;
-                            return `${porcentaje}%`;
+                            return porcentaje >= 10 ? `${porcentaje}%` : "";
                         },
                         color: (context) => darkenColor(context.dataset.backgroundColor[context.dataIndex]),
                         font: { weight: "bold", size: 14 },
@@ -196,8 +196,9 @@ document.addEventListener("DOMContentLoaded", () => {
                             label: (context) => {
                                 const label = context.label || "";
                                 const value = context.raw || 0;
-                                return `${label}: $${value.toLocaleString("es-CO")}`;
+                                return ` ${label} $${value.toLocaleString("es-CO")}`;
                             },
+                            title: () => "",
                         },
                     },
                     datalabels: {
