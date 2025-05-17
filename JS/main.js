@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const categorias = [];
         gastosInputs.forEach((input) => {
-            const categoria = input.closest(".categoria").querySelector(".nombre-categoria").textContent.trim();
+            const categoria = input.closest(".categoria").querySelector(".nombre-categoria").textContent.trim().replace(/:$/, "");
             const gasto = Number(input.value.replace(/\./g, "")) || 0;
             if (gasto > 0) {
                 categorias.push({ nombre: categoria, gasto });
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 const label = context.label || "";
                                 const index = context.dataIndex;
                                 const porcentaje = data[index].porcentaje;
-                                return ` ${label} ${porcentaje}%`;
+                                return ` ${label}: ${porcentaje}%`;
                             },
                             title: () => '',
                         },
@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             label: (context) => {
                                 const label = context.label || "";
                                 const value = context.raw || 0;
-                                return ` ${label} $${value.toLocaleString("es-CO")}`;
+                                return ` ${label}: $${value.toLocaleString("es-CO")}`;
                             },
                             title: () => "",
                         },
